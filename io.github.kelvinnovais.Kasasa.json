@@ -54,8 +54,8 @@
         {
           "type": "git",
           "url": "https://github.com/KelvinNovais/Kasasa",
-          "tag": "v1.1.2",
-          "commit": "cbf32f61f88a21c57d805a043c3341d826be0e65"
+          "tag": "v1.1.3",
+          "commit": "82b91ce5f12f47c8a8f340ecde7a693d6ced5b97"
         }
       ]
     }
