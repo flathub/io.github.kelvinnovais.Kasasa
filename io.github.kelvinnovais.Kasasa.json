@@ -1,63 +1,104 @@
 {
-  "id": "io.github.kelvinnovais.Kasasa",
-  "runtime": "org.gnome.Platform",
-  "runtime-version": "48",
-  "sdk": "org.gnome.Sdk",
-  "command": "kasasa",
-  "finish-args": [
-    "--share=ipc",
-    "--socket=fallback-x11",
-    "--device=dri",
-    "--socket=wayland",
-    "--filesystem=xdg-pictures"
-  ],
-  "cleanup": [
-    "/include",
-    "/lib/pkgconfig",
-    "/man",
-    "/share/doc",
-    "/share/gtk-doc",
-    "/share/man",
-    "/share/pkgconfig",
-    "*.la",
-    "*.a"
-  ],
-  "modules": [
-    {
-      "name": "libportal",
-      "buildsystem": "meson",
-      "builddir": true,
-      "config-opts": [
-        "-Dbackend-gtk3=disabled",
-        "-Dbackend-gtk4=enabled",
-        "-Dbackend-qt5=disabled",
-        "-Dbackend-qt6=disabled",
-        "-Dportal-tests=false",
-        "-Dintrospection=true",
-        "-Ddocs=false",
-        "-Dtests=false",
-        "-Dvapi=false"
-      ],
-      "sources": [
+    "id" : "io.github.kelvinnovais.Kasasa",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "48",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "kasasa",
+    "finish-args" : [
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--device=dri",
+        "--socket=wayland",
+        "--filesystem=xdg-pictures"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
         {
-          "type": "git",
-          "url": "https://github.com/flatpak/libportal.git",
-          "tag": "0.9.1"
-        }
-      ]
-    },
-    {
-      "name": "kasasa",
-      "builddir": true,
-      "buildsystem": "meson",
-      "sources": [
+            "name" : "libportal",
+            "buildsystem" : "meson",
+            "builddir" : true,
+            "config-opts" : [
+                "-Dbackend-gtk3=disabled",
+                "-Dbackend-gtk4=enabled",
+                "-Dbackend-qt5=disabled",
+                "-Dbackend-qt6=disabled",
+                "-Dportal-tests=false",
+                "-Dintrospection=true",
+                "-Ddocs=false",
+                "-Dtests=false",
+                "-Dvapi=false"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://github.com/flatpak/libportal.git",
+                    "tag" : "0.9.1"
+                }
+            ]
+        },
         {
-          "type": "git",
-          "url": "https://github.com/KelvinNovais/Kasasa",
-          "tag": "v1.1.4",
-          "commit": "f8e8f70536e4881ffd58b3405f11ce0d91f2e27f"
+            "name" : "gst",
+            "buildsystem" : "meson",
+            "builddir" : true,
+            "config-opts" : [
+                "-Dbase=enabled",
+                "-Dgood=disabled",
+                "-Dugly=disabled",
+                "-Dbad=disabled",
+                "-Dlibav=disabled",
+                "-Ddevtools=disabled",
+                "-Dges=disabled",
+                "-Drtsp_server=disabled",
+                "-Drs=disabled",
+                "-Dgst-examples=disabled",
+                "-Dpython=disabled",
+                "-Dtls=disabled",
+                "-Dlibnice=disabled",
+                "-Dgpl=disabled",
+                "-Dqt5=disabled",
+                "-Dqt6=disabled",
+                "-Dwebrtc=disabled",
+                "-Dtests=disabled",
+                "-Dexamples=disabled",
+                "-Ddoc=disabled"
+            ],
+            "sources" : [
+                {
+                    "type" : "git",
+                    "url" : "https://gitlab.freedesktop.org/gstreamer/gstreamer.git",
+                    "tag" : "1.27.2",
+                    "disable-submodules" : true
+                }
+            ]
+        },
+        {
+            "name" : "kasasa",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type": "git",
+                    "url": "https://github.com/KelvinNovais/Kasasa",
+                    "tag": "v1.1.5",
+                    "commit": "bac34917d70d29a6c8df015bbf93ade5731d86ab"
+                }
+            ],
+            "config-opts" : [
+                "--libdir=lib"
+            ]
         }
-      ]
+    ],
+    "build-options" : {
+        "env" : {        }
     }
-  ]
 }
