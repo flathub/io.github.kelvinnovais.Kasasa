@@ -1,7 +1,7 @@
 {
     "id" : "io.github.kelvinnovais.Kasasa",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "49",
+    "runtime-version" : "50",
     "sdk" : "org.gnome.Sdk",
     "command" : "kasasa",
     "finish-args" : [
@@ -13,20 +13,14 @@
     ],
     "cleanup" : [
         "/include",
+        "/lib/girepository-1.0",
         "/lib/pkgconfig",
-        "/man",
-        "/share/doc",
-        "/share/gtk-doc",
-        "/share/man",
-        "/share/pkgconfig",
-        "*.la",
-        "*.a"
+        "/share/gir-1.0"
     ],
     "modules" : [
         {
             "name" : "libportal",
             "buildsystem" : "meson",
-            "builddir" : true,
             "config-opts" : [
                 "-Dbackend-gtk3=disabled",
                 "-Dbackend-gtk4=enabled",
@@ -42,13 +36,13 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/flatpak/libportal.git",
-                    "tag" : "0.9.1"
+                    "tag" : "0.9.1",
+                    "commit" : "8f5dc8d192f6e31dafe69e35219e3b707bde71ce"
                 }
             ]
         },
         {
             "name" : "kasasa",
-            "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [
                 {
@@ -57,13 +51,7 @@
                     "tag": "v1.1.6",
                     "commit": "d0caf098e61d5dc518ebcb89a6296502b5ac7d60"
                 }
-            ],
-            "config-opts" : [
-                "--libdir=lib"
             ]
         }
-    ],
-    "build-options" : {
-        "env" : {        }
-    }
+    ]
 }
